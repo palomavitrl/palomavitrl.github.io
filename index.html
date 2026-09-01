@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paloma Vitória Rodrigues de Lima — Engenharia de Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1B2D;
+    --bg-panel: #142338;
+    --bg-panel-hi: #182a45;
+    --line: #2B3F5C;
+    --ink: #E7EEF6;
+    --ink-dim: #9FB2CB;
+    --amber: #E8A33D;
+    --green: #5FBE94;
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/48px 48px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/48px 48px,
+      var(--bg);
+    background-blend-mode: normal;
+    opacity:1;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background: radial-gradient(ellipse at 20% 0%, rgba(15,27,45,0) 0%, rgba(15,27,45,0.55) 55%, rgba(15,27,45,0.9) 100%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  a{color:var(--amber); text-decoration:none; border-bottom:1px solid rgba(232,163,61,0.35);}
+  a:hover{border-bottom-color: var(--amber);}
+
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; margin:0;}
+
+  /* ---- Hero ---- */
+  header.hero{padding:64px 0 28px;}
+  .hero-top{display:grid; grid-template-columns: 1fr 220px; gap:48px; align-items:start;}
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color: var(--green);
+    margin-bottom:18px;
+    letter-spacing:0.02em;
+  }
+  .hero h1{font-size:44px; line-height:1.15; max-width:20ch;}
+  .hero .role{
+    font-size:19px;
+    color: var(--ink-dim);
+    margin-top:14px;
+    max-width:46ch;
+  }
+  .photo-plate{
+    position:relative;
+    border:1px solid var(--line);
+    background: var(--bg-panel);
+    padding:10px;
+  }
+  .photo-plate img{
+    display:block;
+    width:100%;
+    height:auto;
+    filter: saturate(0.92) contrast(1.02);
+  }
+
+  /* Title block — engineering drawing style, the signature element */
+  .titleblock{
+    margin-top:40px;
+    border:1px solid var(--line);
+    background: var(--bg-panel);
+  }
+  .titleblock-row{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .titleblock-row + .titleblock-row{border-top:1px solid var(--line);}
+  .tb-cell{
+    padding:12px 16px;
+    border-right:1px solid var(--line);
+  }
+  .tb-cell:last-child{border-right:none;}
+  .tb-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--ink-dim);
+    margin-bottom:4px;
+  }
+  .tb-value{font-size:14.5px;}
+  .tb-value a{border-bottom:none; color:var(--ink);}
+  .tb-value a:hover{color:var(--amber);}
+
+  /* ---- Section shell ---- */
+  section{padding:52px 0; border-top:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:28px;}
+  .section-num{font-family:'IBM Plex Mono', monospace; color:var(--green); font-size:14px;}
+  .section-head h2{font-size:22px;}
+
+  /* ---- About ---- */
+  .about p{font-size:16px; color:var(--ink-dim); max-width:64ch;}
+  .about p strong{color:var(--ink); font-weight:500;}
+
+  /* ---- Skills ---- */
+  .skill-groups{display:grid; grid-template-columns: repeat(2, 1fr); gap:24px 40px;}
+  .skill-group-title{font-size:13px; color:var(--amber); font-family:'IBM Plex Mono', monospace; margin-bottom:10px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-size:13.5px;
+    padding:5px 11px;
+    border:1px solid var(--line);
+    border-radius: var(--radius);
+    color:var(--ink-dim);
+    background: var(--bg-panel);
+  }
+
+  /* ---- Featured project ---- */
+  .featured{
+    border:1px solid var(--line);
+    background: var(--bg-panel);
+    padding:32px;
+    position:relative;
+  }
+  .featured::before{
+    content:"PROJETO PRINCIPAL";
+    position:absolute; top:0; left:0;
+    transform:translateY(-50%);
+    background: var(--amber);
+    color:#101B2D;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    font-weight:500;
+    padding:4px 10px;
+    letter-spacing:0.03em;
+  }
+  .featured h3{font-size:24px; margin-top:8px;}
+  .featured .stack{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--green);
+    margin:10px 0 16px;
+  }
+  .featured p{color:var(--ink-dim); font-size:15.5px; max-width:70ch;}
+  .featured .links{margin-top:18px; display:flex; gap:20px; font-size:14px;}
+
+  /* ---- Project grid ---- */
+  .project-grid{
+    margin-top:24px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:18px;
+  }
+  .project-card{
+    border:1px solid var(--line);
+    background: var(--bg-panel);
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .project-card h4{font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:600; margin:0;}
+  .project-card .stack{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--green);}
+  .project-card p{font-size:13.5px; color:var(--ink-dim); margin:0; flex-grow:1;}
+  .project-card a{font-size:13px; margin-top:4px;}
+
+  /* ---- Education / Experience timeline ---- */
+  .timeline-item{display:grid; grid-template-columns: 130px 1fr; gap:20px; padding:16px 0;}
+  .timeline-item + .timeline-item{border-top:1px solid var(--line);}
+  .timeline-date{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-dim); padding-top:2px;}
+  .timeline-body h4{font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:600; margin:0 0 4px;}
+  .timeline-body .org{color:var(--amber); font-size:14px; margin-bottom:6px;}
+  .timeline-body p{font-size:14.5px; color:var(--ink-dim); margin:0;}
+
+  /* ---- Footer ---- */
+  footer{padding:40px 0 60px; border-top:1px solid var(--line);}
+  footer .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .contact-links{display:flex; gap:22px; font-size:14.5px;}
+  footer .fine{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-dim);}
+
+  @media (max-width: 720px){
+    .hero h1{font-size:34px;}
+    .hero-top{grid-template-columns: 1fr; gap:24px;}
+    .photo-plate{max-width:220px;}
+    .titleblock-row{grid-template-columns: 1fr;}
+    .tb-cell{border-right:none; border-bottom:1px solid var(--line);}
+    .tb-cell:last-child{border-bottom:none;}
+    .skill-groups{grid-template-columns: 1fr;}
+    .project-grid{grid-template-columns: 1fr;}
+    .timeline-item{grid-template-columns: 1fr; gap:4px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="hero-eyebrow">// engenharia de software — sistemas &amp; arquitetura</div>
+        <h1>Paloma Vitória Rodrigues de Lima</h1>
+        <p class="role">Graduanda em Engenharia de Software (UCB), construindo arquiteturas estáveis e explorando Ciência de Dados aplicada.</p>
+      </div>
+      <div class="photo-plate">
+        <img src="foto-paloma.jpg" alt="Foto de Paloma Vitória Rodrigues de Lima">
+      </div>
+    </div>
+
+    <div class="titleblock">
+      <div class="titleblock-row">
+        <div class="tb-cell">
+          <div class="tb-label">localização</div>
+          <div class="tb-value">Brasília, DF</div>
+        </div>
+        <div class="tb-cell">
+          <div class="tb-label">formação</div>
+          <div class="tb-value">Eng. de Software — 6º sem.</div>
+        </div>
+        <div class="tb-cell">
+          <div class="tb-label">conclusão prevista</div>
+          <div class="tb-value">dez / 2027</div>
+        </div>
+      </div>
+      <div class="titleblock-row">
+        <div class="tb-cell">
+          <div class="tb-label">e-mail</div>
+          <div class="tb-value"><a href="mailto:paloma.vitoria.lima@outlook.com">paloma.vitoria.lima@outlook.com</a></div>
+        </div>
+        <div class="tb-cell">
+          <div class="tb-label">github</div>
+          <div class="tb-value"><a href="https://github.com/palomavitrl" target="_blank" rel="noopener">github.com/palomavitrl</a></div>
+        </div>
+        <div class="tb-cell">
+          <div class="tb-label">linkedin</div>
+          <div class="tb-value"><a href="https://www.linkedin.com/in/paloma-rodrigues-lima" target="_blank" rel="noopener">/paloma-rodrigues-lima</a></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="about" id="sobre">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Sobre</h2>
+    </div>
+    <p>
+      Estou no <strong>6º semestre de Engenharia de Software</strong> na Universidade Católica de Brasília, com formação técnica em Informática e base prática em desenvolvimento web. Meu maior interesse é <strong>arquitetura de sistemas</strong> — projetar soluções que continuam de pé mesmo quando algo falha — e venho ampliando esse interesse para <strong>Ciência de Dados e Machine Learning</strong>, com estudos aplicados em Scikit-learn, PyTorch e FastAPI. Também tenho experiência em suporte técnico e trabalho com metodologias ágeis (Scrum).
+    </p>
+  </section>
+
+  <section id="competencias">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Competências</h2>
+    </div>
+    <div class="skill-groups">
+      <div>
+        <div class="skill-group-title">linguagens &amp; dados</div>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">Java (POO)</span><span class="chip">C</span>
+          <span class="chip">SQL / MySQL</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span>
+          <span class="chip">PyTorch</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">desenvolvimento web</div>
+        <div class="chip-row">
+          <span class="chip">HTML5</span><span class="chip">CSS3 / Tailwind</span><span class="chip">JavaScript (ES6+)</span>
+          <span class="chip">PHP</span><span class="chip">FastAPI</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">ferramentas</div>
+        <div class="chip-row">
+          <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span><span class="chip">NetBeans</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">metodologias &amp; cloud</div>
+        <div class="chip-row">
+          <span class="chip">Scrum</span><span class="chip">Fundamentos de UX</span><span class="chip">AWS Cloud Foundations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Projetos</h2>
+    </div>
+
+    <div class="featured">
+      <h3>Arquitetura Resiliente para Sistema MCAS (Boeing 737 MAX)</h3>
+      <div class="stack">Python · HTML/JS · redundância de sensores · padrões de tolerância a falhas</div>
+      <p>
+        Implementação em Python de uma arquitetura tolerante a falhas para o sistema MCAS, acompanhada de uma simulação interativa que analisa o comportamento do sistema sob falha — com foco em redundância de sensores e padrões de projeto usados em sistemas de missão crítica.
+      </p>
+      <div class="links">
+        <a href="https://github.com/palomavitrl/mcas-system-architecture-python" target="_blank" rel="noopener">→ ver repositório no GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <h4>Sistema de Venda de Ingressos</h4>
+        <div class="stack">Java · padrões GRASP</div>
+        <p>Sistema para venda de ingressos de show de ópera, aplicando boas práticas de orientação a objetos com os padrões GRASP (Controller, Information Expert, Creator).</p>
+        <a href="https://github.com/palomavitrl/SistemaVendaIngressos-GRASP" target="_blank" rel="noopener">→ ver repositório</a>
+      </div>
+      <div class="project-card">
+        <h4>Calculadora HP 12C em C</h4>
+        <div class="stack">C · pilhas · terminal</div>
+        <p>Calculadora financeira inspirada na HP 12C, executada via terminal, com avaliação de expressões numéricas usando estrutura de dados em pilha.</p>
+        <a href="https://github.com/palomavitrl/CalculadoraHP12C" target="_blank" rel="noopener">→ ver repositório</a>
+      </div>
+      <div class="project-card">
+        <h4>Fupare</h4>
+        <div class="stack">HTML · CSS · JavaScript</div>
+        <p>Protótipo acadêmico para auxiliar pessoas a reduzir ou interromper o consumo de cigarros, com orientações e acompanhamento de progresso diário.</p>
+        <a href="https://github.com/palomavitrl/FupareSite" target="_blank" rel="noopener">→ ver repositório</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="trajetoria">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Formação &amp; Experiência</h2>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2023 — 2027</div>
+      <div class="timeline-body">
+        <h4>Bacharelado em Engenharia de Software</h4>
+        <div class="org">Universidade Católica de Brasília (UCB)</div>
+        <p>6º semestre em andamento. Conclusão prevista para dezembro de 2027.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Ago — Dez 2023</div>
+      <div class="timeline-body">
+        <h4>Estagiária de Suporte Técnico e Produção Digital</h4>
+        <div class="org">Infinity Gráfica</div>
+        <p>Suporte técnico a usuários, manutenção de hardware, configuração de redes locais e otimização de processos de tratamento de arquivos digitais.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2026</div>
+      <div class="timeline-body">
+        <h4>Trilha de estudos em Dados &amp; Inteligência Artificial</h4>
+        <div class="org">Estudo autônomo</div>
+        <p>Aprendizado supervisionado com Scikit-learn, manipulação de dados categóricos em Python, introdução ao FastAPI, modelos Transformer com PyTorch e introdução a tensores.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2023 — 2024</div>
+      <div class="timeline-body">
+        <h4>Formação complementar</h4>
+        <div class="org">TIC em Trilhas · AWS Academy · Dell</div>
+        <p>Programação na Prática, Desenvolvimento Colaborativo no GitHub, Fundamentos do Scrum, AWS Cloud Foundations e Suporte Técnico em TI.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-row">
+      <div class="fine">Brasília, DF — construído com atenção a arquitetura, dados e boas práticas.</div>
+      <div class="contact-links">
+        <a href="mailto:paloma.vitoria.lima@outlook.com">e-mail</a>
+        <a href="https://github.com/palomavitrl" target="_blank" rel="noopener">github</a>
+        <a href="https://www.linkedin.com/in/paloma-rodrigues-lima" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
